@@ -8,21 +8,33 @@
 
 #import "ViewController.h"
 
+#import "HardwareDectetionViewController.h"
+
 @interface ViewController ()
 
 @end
 
 @implementation ViewController
 
+#pragma mark - lifeCycle
+
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view, typically from a nib.
 }
 
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+}
+
+#pragma mark - Handlers
+
+- (IBAction)hardWareDetection:(UIButton *)sender {
+    
+    HardwareDectetionViewController *hardwareController = [[HardwareDectetionViewController alloc] init];
+    UINavigationController *navigation = [[UINavigationController alloc] initWithRootViewController:hardwareController];
+    [self presentViewController:navigation animated:YES completion:nil];
+    
 }
 
 

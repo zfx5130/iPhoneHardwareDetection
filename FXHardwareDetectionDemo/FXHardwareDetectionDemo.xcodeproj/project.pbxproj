@@ -15,6 +15,8 @@
 		842D0FD420A16C8000F55B20 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 842D0FD320A16C8000F55B20 /* main.m */; };
 		842D0FDE20A16C8000F55B20 /* FXHardwareDetectionDemoTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 842D0FDD20A16C8000F55B20 /* FXHardwareDetectionDemoTests.m */; };
 		842D0FE920A16C8000F55B20 /* FXHardwareDetectionDemoUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 842D0FE820A16C8000F55B20 /* FXHardwareDetectionDemoUITests.m */; };
+		842D0FFA20A16E7A00F55B20 /* HardwareDectetionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 842D0FF820A16E7A00F55B20 /* HardwareDectetionViewController.m */; };
+		842D0FFB20A16E7A00F55B20 /* HardwareDectetionViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 842D0FF920A16E7A00F55B20 /* HardwareDectetionViewController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -51,6 +53,9 @@
 		842D0FE420A16C8000F55B20 /* FXHardwareDetectionDemoUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FXHardwareDetectionDemoUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		842D0FE820A16C8000F55B20 /* FXHardwareDetectionDemoUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FXHardwareDetectionDemoUITests.m; sourceTree = "<group>"; };
 		842D0FEA20A16C8000F55B20 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		842D0FF720A16E7A00F55B20 /* HardwareDectetionViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HardwareDectetionViewController.h; sourceTree = "<group>"; };
+		842D0FF820A16E7A00F55B20 /* HardwareDectetionViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HardwareDectetionViewController.m; sourceTree = "<group>"; };
+		842D0FF920A16E7A00F55B20 /* HardwareDectetionViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HardwareDectetionViewController.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -101,6 +106,7 @@
 		842D0FC320A16C7F00F55B20 /* FXHardwareDetectionDemo */ = {
 			isa = PBXGroup;
 			children = (
+				842D0FF620A16E4B00F55B20 /* FXHardwareDetection */,
 				842D0FC420A16C7F00F55B20 /* AppDelegate.h */,
 				842D0FC520A16C7F00F55B20 /* AppDelegate.m */,
 				842D0FC720A16C7F00F55B20 /* ViewController.h */,
@@ -130,6 +136,16 @@
 				842D0FEA20A16C8000F55B20 /* Info.plist */,
 			);
 			path = FXHardwareDetectionDemoUITests;
+			sourceTree = "<group>";
+		};
+		842D0FF620A16E4B00F55B20 /* FXHardwareDetection */ = {
+			isa = PBXGroup;
+			children = (
+				842D0FF720A16E7A00F55B20 /* HardwareDectetionViewController.h */,
+				842D0FF820A16E7A00F55B20 /* HardwareDectetionViewController.m */,
+				842D0FF920A16E7A00F55B20 /* HardwareDectetionViewController.xib */,
+			);
+			path = FXHardwareDetection;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -235,6 +251,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				842D0FFB20A16E7A00F55B20 /* HardwareDectetionViewController.xib in Resources */,
 				842D0FD120A16C8000F55B20 /* LaunchScreen.storyboard in Resources */,
 				842D0FCE20A16C8000F55B20 /* Assets.xcassets in Resources */,
 				842D0FCC20A16C7F00F55B20 /* Main.storyboard in Resources */,
@@ -262,6 +279,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				842D0FFA20A16E7A00F55B20 /* HardwareDectetionViewController.m in Sources */,
 				842D0FC920A16C7F00F55B20 /* ViewController.m in Sources */,
 				842D0FD420A16C8000F55B20 /* main.m in Sources */,
 				842D0FC620A16C7F00F55B20 /* AppDelegate.m in Sources */,
