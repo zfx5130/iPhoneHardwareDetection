@@ -17,6 +17,11 @@
 		842D0FE920A16C8000F55B20 /* FXHardwareDetectionDemoUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 842D0FE820A16C8000F55B20 /* FXHardwareDetectionDemoUITests.m */; };
 		842D0FFA20A16E7A00F55B20 /* HardwareDectetionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 842D0FF820A16E7A00F55B20 /* HardwareDectetionViewController.m */; };
 		842D0FFB20A16E7A00F55B20 /* HardwareDectetionViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 842D0FF920A16E7A00F55B20 /* HardwareDectetionViewController.xib */; };
+		842D0FFE20A1A11E00F55B20 /* YMPowerDashboard.m in Sources */ = {isa = PBXBuildFile; fileRef = 842D0FFD20A1A11E00F55B20 /* YMPowerDashboard.m */; };
+		842D100220A1A69300F55B20 /* HardwareDectionTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 842D100020A1A69300F55B20 /* HardwareDectionTableViewCell.m */; };
+		842D100320A1A69300F55B20 /* HardwareDectionTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 842D100120A1A69300F55B20 /* HardwareDectionTableViewCell.xib */; };
+		842D100620A1A8A600F55B20 /* HardwareDectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 842D100520A1A8A600F55B20 /* HardwareDectionView.m */; };
+		842D100820A1A8BA00F55B20 /* HardwareDectionView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 842D100720A1A8BA00F55B20 /* HardwareDectionView.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -56,6 +61,14 @@
 		842D0FF720A16E7A00F55B20 /* HardwareDectetionViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HardwareDectetionViewController.h; sourceTree = "<group>"; };
 		842D0FF820A16E7A00F55B20 /* HardwareDectetionViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HardwareDectetionViewController.m; sourceTree = "<group>"; };
 		842D0FF920A16E7A00F55B20 /* HardwareDectetionViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HardwareDectetionViewController.xib; sourceTree = "<group>"; };
+		842D0FFC20A1A11D00F55B20 /* YMPowerDashboard.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YMPowerDashboard.h; sourceTree = "<group>"; };
+		842D0FFD20A1A11E00F55B20 /* YMPowerDashboard.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YMPowerDashboard.m; sourceTree = "<group>"; };
+		842D0FFF20A1A69300F55B20 /* HardwareDectionTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HardwareDectionTableViewCell.h; sourceTree = "<group>"; };
+		842D100020A1A69300F55B20 /* HardwareDectionTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HardwareDectionTableViewCell.m; sourceTree = "<group>"; };
+		842D100120A1A69300F55B20 /* HardwareDectionTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HardwareDectionTableViewCell.xib; sourceTree = "<group>"; };
+		842D100420A1A8A600F55B20 /* HardwareDectionView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HardwareDectionView.h; sourceTree = "<group>"; };
+		842D100520A1A8A600F55B20 /* HardwareDectionView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HardwareDectionView.m; sourceTree = "<group>"; };
+		842D100720A1A8BA00F55B20 /* HardwareDectionView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HardwareDectionView.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -141,6 +154,14 @@
 		842D0FF620A16E4B00F55B20 /* FXHardwareDetection */ = {
 			isa = PBXGroup;
 			children = (
+				842D0FFC20A1A11D00F55B20 /* YMPowerDashboard.h */,
+				842D0FFD20A1A11E00F55B20 /* YMPowerDashboard.m */,
+				842D100420A1A8A600F55B20 /* HardwareDectionView.h */,
+				842D100520A1A8A600F55B20 /* HardwareDectionView.m */,
+				842D100720A1A8BA00F55B20 /* HardwareDectionView.xib */,
+				842D0FFF20A1A69300F55B20 /* HardwareDectionTableViewCell.h */,
+				842D100020A1A69300F55B20 /* HardwareDectionTableViewCell.m */,
+				842D100120A1A69300F55B20 /* HardwareDectionTableViewCell.xib */,
 				842D0FF720A16E7A00F55B20 /* HardwareDectetionViewController.h */,
 				842D0FF820A16E7A00F55B20 /* HardwareDectetionViewController.m */,
 				842D0FF920A16E7A00F55B20 /* HardwareDectetionViewController.xib */,
@@ -252,9 +273,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				842D0FFB20A16E7A00F55B20 /* HardwareDectetionViewController.xib in Resources */,
+				842D100320A1A69300F55B20 /* HardwareDectionTableViewCell.xib in Resources */,
 				842D0FD120A16C8000F55B20 /* LaunchScreen.storyboard in Resources */,
 				842D0FCE20A16C8000F55B20 /* Assets.xcassets in Resources */,
 				842D0FCC20A16C7F00F55B20 /* Main.storyboard in Resources */,
+				842D100820A1A8BA00F55B20 /* HardwareDectionView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -279,10 +302,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				842D100220A1A69300F55B20 /* HardwareDectionTableViewCell.m in Sources */,
+				842D0FFE20A1A11E00F55B20 /* YMPowerDashboard.m in Sources */,
 				842D0FFA20A16E7A00F55B20 /* HardwareDectetionViewController.m in Sources */,
 				842D0FC920A16C7F00F55B20 /* ViewController.m in Sources */,
 				842D0FD420A16C8000F55B20 /* main.m in Sources */,
 				842D0FC620A16C7F00F55B20 /* AppDelegate.m in Sources */,
+				842D100620A1A8A600F55B20 /* HardwareDectionView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
