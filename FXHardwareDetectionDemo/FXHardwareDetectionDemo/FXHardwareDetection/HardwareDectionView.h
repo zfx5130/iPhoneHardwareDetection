@@ -14,4 +14,8 @@
 
 @property (weak, nonatomic) IBOutlet UIView *headHardwareAniHolderView;
 
+@property (weak, nonatomic) IBOutlet UILabel *phoneTitleLabel;
+
+@property (weak, nonatomic) IBOutlet UILabel *spaceSizeLabel;
+
 @end

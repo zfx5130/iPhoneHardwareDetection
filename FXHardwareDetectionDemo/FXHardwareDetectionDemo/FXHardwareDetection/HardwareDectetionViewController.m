@@ -8,6 +8,7 @@
 
 #import "YMPowerDashboard.h"
 #import "HardwareDectionView.h"
+#import "DeviceInfoManager.h"
 #import "HardwareDectionTableViewCell.h"
 #import "HardwareDectetionViewController.h"
 
@@ -80,6 +81,30 @@ UITableViewDataSource>
     [self.circleAnimationView setPercent:0.65f
                                 animated:YES];
     [self.tableHeadView.headHardwareAniHolderView addSubview:self.circleAnimationView];
+    
+    const NSString *deviceName = [[DeviceInfoManager sharedManager] getDeviceName];
+    self.tableHeadView.phoneTitleLabel.text = [NSString stringWithFormat:@"%@",deviceName];
+    self.tableHeadView.spaceSizeLabel.text = [NSString stringWithFormat:@"%@",[self getMemorySize]];
+}
+
+- (NSString *)getMemorySize {
+    int64_t totalDisk = [[DeviceInfoManager sharedManager] getTotalDiskSpace];
+    NSString *memoryString = @"32G";
+    CGFloat memoryValue = totalDisk / 1024 / 1024 / 1024.0;
+    if (memoryValue <= 32) {
+        memoryString = @"32G";
+    } else if (memoryValue <= 64) {
+        memoryString = @"64G";
+    } else if (memoryValue <= 128) {
+        memoryString = @"128G";
+    } else if (memoryValue <= 256) {
+        memoryString = @"256G";
+    } else if (memoryValue <= 512) {
+        memoryString = @"512G";
+    } else  {
+        memoryString = @"64G";
+    }
+    return memoryString;
 }
 
 #pragma mark - UITableViewDelegate
