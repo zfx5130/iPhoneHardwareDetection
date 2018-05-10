@@ -13,6 +13,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="HardwareDectionView">
             <connections>
                 <outlet property="aView" destination="iN0-l3-epB" id="Ihk-2t-sOK"/>
+                <outlet property="detectionHareDectionLabel" destination="eWY-Vc-wDB" id="449-DP-f7S"/>
                 <outlet property="headHardwareAniHolderView" destination="fG1-44-VZv" id="O0G-g8-Fa3"/>
                 <outlet property="phoneTitleLabel" destination="IpE-Ts-zyB" id="2G7-Q1-Sdp"/>
                 <outlet property="spaceSizeLabel" destination="1Mg-NB-bOm" id="Uch-Vc-39m"/>
@@ -48,13 +49,25 @@
                     <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="硬件检测..." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eWY-Vc-wDB">
+                    <rect key="frame" x="16" y="189" width="343" height="21"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="21" id="Zcs-aa-IrW"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
             </subviews>
             <color key="backgroundColor" red="0.94509803921568625" green="0.94509803921568625" blue="0.94509803921568625" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
             <constraints>
                 <constraint firstItem="IpE-Ts-zyB" firstAttribute="leading" secondItem="fG1-44-VZv" secondAttribute="trailing" constant="28" id="4tL-xq-53D"/>
                 <constraint firstAttribute="trailing" secondItem="1Mg-NB-bOm" secondAttribute="trailing" constant="23" id="Ia2-bT-bTk"/>
                 <constraint firstAttribute="trailing" secondItem="IpE-Ts-zyB" secondAttribute="trailing" constant="23" id="LjO-ub-t8p"/>
+                <constraint firstAttribute="trailing" secondItem="eWY-Vc-wDB" secondAttribute="trailing" constant="16" id="NGR-QO-c1u"/>
                 <constraint firstItem="fG1-44-VZv" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="40" id="PH5-B8-TfG"/>
+                <constraint firstItem="eWY-Vc-wDB" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="16" id="Tn6-H2-bzQ"/>
+                <constraint firstAttribute="bottom" secondItem="eWY-Vc-wDB" secondAttribute="bottom" constant="20" id="XR2-Av-Eev"/>
                 <constraint firstItem="1Mg-NB-bOm" firstAttribute="leading" secondItem="fG1-44-VZv" secondAttribute="trailing" constant="28" id="cQQ-Ct-ykC"/>
                 <constraint firstItem="fG1-44-VZv" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" constant="-15" id="dGr-GX-lEa"/>
                 <constraint firstItem="1Mg-NB-bOm" firstAttribute="top" secondItem="IpE-Ts-zyB" secondAttribute="bottom" constant="10" id="saY-na-Qi7"/>

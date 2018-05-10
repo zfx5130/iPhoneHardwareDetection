@@ -9,8 +9,11 @@
 #import "YMPowerDashboard.h"
 #import "HardwareDectionView.h"
 #import "DeviceInfoManager.h"
+#import "NetWorkInfoManager.h"
 #import "HardwareDectionTableViewCell.h"
 #import "HardwareDectetionViewController.h"
+
+#define kUIColorFromRGBA(r,g,b,a)     [UIColor colorWithRed:r / 255.0f green:g / 255.0f blue:b / 255.0f alpha:a]
 
 @interface HardwareDectetionViewController ()
 <UITableViewDelegate,
@@ -21,6 +24,17 @@ UITableViewDataSource>
 @property (strong, nonatomic) YMPowerDashboard *circleAnimationView;
 
 @property (strong, nonatomic) HardwareDectionView *tableHeadView;
+
+@property (strong, nonatomic) NSMutableArray *allDectionArrays;
+
+@property (assign, nonatomic) BOOL flag1;
+@property (assign, nonatomic) BOOL flag2;
+@property (assign, nonatomic) BOOL flag3;
+@property (assign, nonatomic) BOOL flag4;
+@property (assign, nonatomic) BOOL flag5;
+@property (assign, nonatomic) BOOL flag6;
+@property (assign, nonatomic) BOOL flag7;
+@property (assign, nonatomic) BOOL flag8;
 
 @end
 
@@ -46,22 +60,20 @@ UITableViewDataSource>
 }
 
 - (void)requestApi {
-    [self setupAddHeadAnimation];
+    [self setupCircleHeadAnimation];
+    [self renderHeadInfo];
 }
 
 - (void)registerTableViewCell {
-    
     UINib *cellNib =
     [UINib nibWithNibName:NSStringFromClass([HardwareDectionTableViewCell class])
                    bundle:nil];
     [self.tableView registerNib:cellNib
          forCellReuseIdentifier:NSStringFromClass([HardwareDectionTableViewCell class])];
-
+    
     self.tableHeadView =
     [[HardwareDectionView alloc] initWithFrame:CGRectMake(0, 0, UIScreen.mainScreen.bounds.size.width, 230)];
-    
     self.tableView.tableHeaderView = self.tableHeadView;
-    
 }
 
 - (void)setupBarButtonItem {
@@ -74,17 +86,24 @@ UITableViewDataSource>
     self.navigationItem.leftBarButtonItem = leftBarItem;
 }
 
-- (void)setupAddHeadAnimation {
-    self.circleAnimationView =
-    [[YMPowerDashboard alloc] initWithFrame:self.tableHeadView.headHardwareAniHolderView.bounds];
-    self.circleAnimationView.animationInterval = 1.5f;
-    [self.circleAnimationView setPercent:0.65f
-                                animated:YES];
-    [self.tableHeadView.headHardwareAniHolderView addSubview:self.circleAnimationView];
-    
+- (void)renderHeadInfo {
     const NSString *deviceName = [[DeviceInfoManager sharedManager] getDeviceName];
     self.tableHeadView.phoneTitleLabel.text = [NSString stringWithFormat:@"%@",deviceName];
     self.tableHeadView.spaceSizeLabel.text = [NSString stringWithFormat:@"%@",[self getMemorySize]];
+}
+
+- (void)setupCircleHeadAnimation {
+    //创建动画
+    self.circleAnimationView =
+    [[YMPowerDashboard alloc] initWithFrame:self.tableHeadView.headHardwareAniHolderView.bounds];
+    [self.tableHeadView.headHardwareAniHolderView addSubview:self.circleAnimationView];
+    __block typeof(self) weakSlef = self;
+    self.circleAnimationView.animationBlock = ^(CGFloat value) {
+        [weakSlef setupTableViewCellAminationWithCurrentValue:value];
+    };
+    [self.circleAnimationView setProgressAnimationInterval:20
+                                                      from:0.0
+                                                        to:1.0];
 }
 
 - (NSString *)getMemorySize {
@@ -107,30 +126,288 @@ UITableViewDataSource>
     return memoryString;
 }
 
-#pragma mark - UITableViewDelegate
+- (void)setupTableViewCellAminationWithCurrentValue:(CGFloat)value {
+    //NSLog(@"value:----::::%@",@(value));
+    if (value <= 0.15) {
+    } else if (value <= 0.23) {
+        //指纹识别
+        [self setupTouchIdAnimation];
+    } else if (value <= 0.3) {
+        //wifi检测
+        [self setupWifiAnimation];
+    } else if (value <= 0.45) {
+        //蓝牙检测
+        [self setupBluetoothAnimation];
+    } else if (value <= 0.54) {
+        //扬声器
+        [self setupSoundAnimation];
+        
+    } else if (value <= 0.67) {
+        //感应
+        [self setupGanyingAnimation];
+    } else if (value <= 0.77) {
+        //指南针
+        [self setupZhiNamZhenAnimation];
+    } else if (value <= 0.87) {
+        //相机
+        [self setupCameraAnimation];
+    } else if (value <= 0.95) {
+        //播电话
+        [self setupCallPhoneAnimation];
+    }
+}
 
+- (void)setupTouchIdAnimation {
+    if (!_flag1) {
+        _flag1 = YES;
+        __block typeof(self) weakSelf = self;
+        self.circleAnimationView.displayLink.paused = YES;
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.75 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            NSMutableDictionary *touchDic = self.allDectionArrays[0];
+            touchDic[@"content"] = @"未检测";
+            touchDic[@"colorType"] = @"2";
+            touchDic[@"imageType"] = @"1";
+            NSIndexPath *indexPath = [NSIndexPath indexPathForRow:0 inSection:0];
+            [weakSelf.tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationLeft];
+            weakSelf.circleAnimationView.displayLink.paused = NO;
+        });
+    }
+}
+
+- (void)setupWifiAnimation {
+    if (!_flag2) {
+        _flag2 = YES;
+        __block typeof(self) weakSelf = self;
+        self.circleAnimationView.displayLink.paused = YES;
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.6 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            NSMutableDictionary *touchDic = self.allDectionArrays[1];
+            touchDic[@"content"] = @"正常";
+            touchDic[@"colorType"] = @"2";
+            touchDic[@"imageType"] = @"2";
+            NSIndexPath *indexPath = [NSIndexPath indexPathForRow:1 inSection:0];
+            [weakSelf.tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationLeft];
+            weakSelf.circleAnimationView.displayLink.paused = NO;
+        });
+    }
+}
+
+- (void)setupBluetoothAnimation {
+    if (!_flag3) {
+        _flag3 = YES;
+        __block typeof(self) weakSelf = self;
+        self.circleAnimationView.displayLink.paused = YES;
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.95 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            NSMutableDictionary *touchDic = self.allDectionArrays[2];
+            touchDic[@"content"] = @"正常";
+            touchDic[@"colorType"] = @"2";
+            touchDic[@"imageType"] = @"2";
+            NSIndexPath *indexPath = [NSIndexPath indexPathForRow:2 inSection:0];
+            [weakSelf.tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationLeft];
+            weakSelf.circleAnimationView.displayLink.paused = NO;
+        });
+    }
+}
+
+- (void)setupSoundAnimation {
+    if (!_flag4) {
+        _flag4 = YES;
+        __block typeof(self) weakSelf = self;
+        self.circleAnimationView.displayLink.paused = YES;
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.65 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            NSMutableDictionary *touchDic = self.allDectionArrays[3];
+            touchDic[@"content"] = @"正常";
+            touchDic[@"colorType"] = @"2";
+            touchDic[@"imageType"] = @"2";
+            NSIndexPath *indexPath = [NSIndexPath indexPathForRow:3 inSection:0];
+            [weakSelf.tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationLeft];
+            weakSelf.circleAnimationView.displayLink.paused = NO;
+        });
+    }
+}
+
+- (void)setupGanyingAnimation {
+    if (!_flag5) {
+        _flag5 = YES;
+        __block typeof(self) weakSelf = self;
+        self.circleAnimationView.displayLink.paused = YES;
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.45 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            NSMutableDictionary *touchDic = self.allDectionArrays[4];
+            touchDic[@"content"] = @"正常";
+            touchDic[@"colorType"] = @"2";
+            touchDic[@"imageType"] = @"2";
+            NSIndexPath *indexPath = [NSIndexPath indexPathForRow:4 inSection:0];
+            [weakSelf.tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationLeft];
+            weakSelf.circleAnimationView.displayLink.paused = NO;
+        });
+    }
+}
+
+- (void)setupZhiNamZhenAnimation {
+    if (!_flag6) {
+        _flag6 = YES;
+        __block typeof(self) weakSelf = self;
+        self.circleAnimationView.displayLink.paused = YES;
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            NSMutableDictionary *touchDic = self.allDectionArrays[5];
+            touchDic[@"content"] = @"正常";
+            touchDic[@"colorType"] = @"2";
+            touchDic[@"imageType"] = @"2";
+            NSIndexPath *indexPath = [NSIndexPath indexPathForRow:5 inSection:0];
+            [weakSelf.tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationLeft];
+            weakSelf.circleAnimationView.displayLink.paused = NO;
+        });
+    }
+}
+
+- (void)setupCameraAnimation {
+    if (!_flag7) {
+        _flag7 = YES;
+        __block typeof(self) weakSelf = self;
+        self.circleAnimationView.displayLink.paused = YES;
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.35 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            NSMutableDictionary *touchDic = self.allDectionArrays[6];
+            touchDic[@"content"] = @"正常";
+            touchDic[@"colorType"] = @"2";
+            touchDic[@"imageType"] = @"3";
+            NSIndexPath *indexPath = [NSIndexPath indexPathForRow:6 inSection:0];
+            [weakSelf.tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationLeft];
+            weakSelf.circleAnimationView.displayLink.paused = NO;
+        });
+    }
+}
+
+- (void)setupCallPhoneAnimation {
+    if (!_flag8) {
+        _flag8 = YES;
+        __block typeof(self) weakSelf = self;
+        self.circleAnimationView.displayLink.paused = YES;
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.25 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            NSMutableDictionary *touchDic = self.allDectionArrays[7];
+            touchDic[@"content"] = @"正常";
+            touchDic[@"colorType"] = @"2";
+            touchDic[@"imageType"] = @"3";
+            NSIndexPath *indexPath = [NSIndexPath indexPathForRow:7 inSection:0];
+            [weakSelf.tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationLeft];
+            weakSelf.circleAnimationView.displayLink.paused = NO;
+        });
+    }
+}
+
+
+#pragma mark - Getters && Setter
+
+- (NSMutableArray *)allDectionArrays {
+    NSString *mobilType = [[NetWorkInfoManager sharedManager] getMobileType];
+    NSString *content = @"10086";
+    if ([mobilType isEqualToString:@"中国移动"]) {
+        content = @"10086";
+    } else if ([mobilType isEqualToString:@"中国联通"]) {
+        content = @"10010";
+    } else if ([mobilType isEqualToString:@"中国电信"]) {
+        content = @"10000";
+    }
+    //colorType 1:默认(r:241 g:241 b:241) 2:(r:153 g:153 b:153)
+    //imageType 0:还未检测 1:未检测 2.正常 3 异常
+    if (!_allDectionArrays) {
+        _allDectionArrays = [@[
+                               [@{
+                                  @"name" : @"指纹识别",
+                                  @"content" : @"",
+                                  @"colorType" : @"1",
+                                  @"imageType" : @"0"
+                                  } mutableCopy],
+                               [@{
+                                  @"name" : @"WIFI",
+                                  @"content" : @"",
+                                  @"colorType" : @"1",
+                                  @"imageType" : @"0"
+                                  } mutableCopy],
+                               [@{
+                                  @"name" : @"蓝牙",
+                                  @"content" : @"",
+                                  @"colorType" : @"1",
+                                  @"imageType" : @"0"
+                                  } mutableCopy],
+                               [@{
+                                  @"name" : @"扬声器",
+                                  @"content" : @"",
+                                  @"colorType" : @"1",
+                                  @"imageType" : @"0"
+                                  } mutableCopy],
+                               [@{
+                                  @"name" : @"感应",
+                                  @"content" : @"",
+                                  @"colorType" : @"1",
+                                  @"imageType" : @"0"
+                                  } mutableCopy],
+                               [@{
+                                  @"name" : @"指南针",
+                                  @"content" : @"",
+                                  @"colorType" : @"1",
+                                  @"imageType" : @"0"
+                                  } mutableCopy],
+                               [@{
+                                  @"name" : @"相机",
+                                  @"content" : @"",
+                                  @"colorType" : @"1",
+                                  @"imageType" : @"0"
+                                  } mutableCopy],
+                               [@{
+                                  @"name" : [NSString stringWithFormat:@"通话(拨打%@测试通话功能)",content],
+                                  @"content" : @"",
+                                  @"colorType" : @"1",
+                                  @"imageType" : @"0"
+                                  } mutableCopy]
+                               ] mutableCopy];
+    }
+    return _allDectionArrays;
+}
+
+#pragma mark - UITableViewDelegate
 
 - (NSInteger)tableView:(UITableView *)tableView
  numberOfRowsInSection:(NSInteger)section {
-    return 10;
+    return self.allDectionArrays.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView
          cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    HardwareDectionTableViewCell * homeListCell =
+    HardwareDectionTableViewCell *homeListCell =
     [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([HardwareDectionTableViewCell class])];
-    homeListCell.selectionStyle = UITableViewCellSelectionStyleNone;
+    NSDictionary *dectionDic =  self.allDectionArrays[indexPath.row];
+    homeListCell.descStatusLabel.text = [NSString stringWithFormat:@"%@",dectionDic[@"content"]];
+    
+    //1:默认(r:241 g:241 b:241) 2:(r:153 g:153 b:153)
+    NSString *colorType = [NSString stringWithFormat:@"%@",dectionDic[@"colorType"]];
+    if ([colorType isEqualToString:@"1"]) {
+        homeListCell.nameLabel.textColor = kUIColorFromRGBA(153, 153, 153, 1.0);
+    } else {
+        homeListCell.nameLabel.textColor = kUIColorFromRGBA(51, 51, 51, 1.0);
+    }
+    homeListCell.nameLabel.text = [NSString stringWithFormat:@"%@",dectionDic[@"name"]];
+    NSString *imageType = [NSString stringWithFormat:@"%@",dectionDic[@"imageType"]];
+    //imageType 0:还未检测 1:未检测 2.正常 3 异常
+    NSString *errorImage = @"button_image";
+    if ([imageType isEqualToString:@"0"]) {
+        errorImage = @"buttonhHH";
+    } else if ([imageType isEqualToString:@"1"]) {
+        errorImage = @"button_image_exception";
+    } else if ([imageType isEqualToString:@"2"]) {
+        errorImage = @"button_image_normal";
+    } else if ([imageType isEqualToString:@"3"]) {
+        errorImage = @"button_image_error";
+    }
+    homeListCell.errorImageView.image = [UIImage imageNamed:errorImage];
     return homeListCell;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView
 heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    return 50;
+    return 44;
 }
 
 - (void)tableView:(UITableView *)tableView
 didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    NSLog(@"indexPath::::%@", @(indexPath.row));
 }
 
 #pragma mark - Handlers

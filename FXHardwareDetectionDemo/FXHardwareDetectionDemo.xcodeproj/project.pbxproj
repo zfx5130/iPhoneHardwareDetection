@@ -26,6 +26,7 @@
 		842D101320A1AF8100F55B20 /* NetWorkInfoManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 842D100F20A1AF8100F55B20 /* NetWorkInfoManager.m */; };
 		842D101420A1AF8100F55B20 /* DeviceDataLibrery.m in Sources */ = {isa = PBXBuildFile; fileRef = 842D101020A1AF8100F55B20 /* DeviceDataLibrery.m */; };
 		842D101520A1AF8100F55B20 /* BatteryInfoManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 842D101120A1AF8100F55B20 /* BatteryInfoManager.m */; };
+		84B856C420A410B300377A50 /* CircularProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = 84B856C120A410B300377A50 /* CircularProgressView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -81,6 +82,8 @@
 		842D100F20A1AF8100F55B20 /* NetWorkInfoManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetWorkInfoManager.m; sourceTree = "<group>"; };
 		842D101020A1AF8100F55B20 /* DeviceDataLibrery.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DeviceDataLibrery.m; sourceTree = "<group>"; };
 		842D101120A1AF8100F55B20 /* BatteryInfoManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BatteryInfoManager.m; sourceTree = "<group>"; };
+		84B856C120A410B300377A50 /* CircularProgressView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CircularProgressView.m; sourceTree = "<group>"; };
+		84B856C320A410B300377A50 /* CircularProgressView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CircularProgressView.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -131,6 +134,7 @@
 		842D0FC320A16C7F00F55B20 /* FXHardwareDetectionDemo */ = {
 			isa = PBXGroup;
 			children = (
+				84B856C020A410B300377A50 /* CircularProgressView */,
 				842D0FF620A16E4B00F55B20 /* FXHardwareDetection */,
 				842D0FC420A16C7F00F55B20 /* AppDelegate.h */,
 				842D0FC520A16C7F00F55B20 /* AppDelegate.m */,
@@ -195,6 +199,15 @@
 				842D101120A1AF8100F55B20 /* BatteryInfoManager.m */,
 			);
 			path = Tools;
+			sourceTree = "<group>";
+		};
+		84B856C020A410B300377A50 /* CircularProgressView */ = {
+			isa = PBXGroup;
+			children = (
+				84B856C320A410B300377A50 /* CircularProgressView.h */,
+				84B856C120A410B300377A50 /* CircularProgressView.m */,
+			);
+			path = CircularProgressView;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -340,6 +353,7 @@
 				842D101320A1AF8100F55B20 /* NetWorkInfoManager.m in Sources */,
 				842D101420A1AF8100F55B20 /* DeviceDataLibrery.m in Sources */,
 				842D0FC620A16C7F00F55B20 /* AppDelegate.m in Sources */,
+				84B856C420A410B300377A50 /* CircularProgressView.m in Sources */,
 				842D100620A1A8A600F55B20 /* HardwareDectionView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -8,21 +8,16 @@
 
 #import <UIKit/UIKit.h>
 
+typedef void(^AnimationBlock)(CGFloat value);
+
 @interface YMPowerDashboard : UIView
 
+@property (nonatomic, copy) AnimationBlock animationBlock;
 
-/* 
- * animation interval, defalut is 1,unit is second, if not animation ,the interval is invalid;
- */
-@property (assign, nonatomic) NSInteger animationInterval;
+@property (strong, nonatomic) CADisplayLink *displayLink;
 
-/**
- *  set percent animated
- *
- *  @param percent  percent
- *  @param animated animated
- */
-- (void)setPercent:(CGFloat)percent
-          animated:(BOOL)animated;
+- (void)setProgressAnimationInterval:(NSInteger)animationInterval
+                                from:(CGFloat)startProgress
+                                  to:(CGFloat)endProgress;
 
 @end

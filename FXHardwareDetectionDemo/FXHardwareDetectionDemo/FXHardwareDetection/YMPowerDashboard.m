@@ -8,9 +8,11 @@
 
 #import "YMPowerDashboard.h"
 
-static const CGFloat kDefaultCircleWidth = 1.0f;
-static const CGFloat kDefaultCircleHeight = 6.0f;
-static const CGFloat kDefaultCircleCount = 40.0f;
+
+#define LineWidth 5.f
+#define Space 7.f
+#define Yellow [UIColor colorWithRed:0.9725 green:0.7412 blue:0.1725 alpha:1]
+
 static const CGFloat kDefalutBatteryLabelFontSize = 30.0f;
 static const CGFloat kDefalutSubTitleLabelFontSize = 16.0f;
 
@@ -19,14 +21,16 @@ static const CGFloat kDefalutSubTitleLabelFontSize = 16.0f;
 @property (strong, nonatomic) CAGradientLayer *gradientLayer;
 @property (strong, nonatomic) CAReplicatorLayer *replicatorLayer;
 @property (strong, nonatomic) CAReplicatorLayer *replicatorOtherLayer;
-@property (strong, nonatomic) CADisplayLink *displayLink;
 @property (strong, nonatomic) UILabel *batteryLabel;
 @property (strong, nonatomic) UILabel *subTitleLabel;
 @property (strong, nonatomic) UIView *circleView;
-@property (assign, nonatomic) CGFloat startValue;
-@property (assign, nonatomic) CGFloat endValue;
 @property (assign, nonatomic) CGFloat currentValue;
 @property (assign, nonatomic) CFTimeInterval beginTime;
+@property (assign, nonatomic) NSInteger animationInterval;
+@property (assign, nonatomic) BOOL isFirstDraw;
+@property (assign, nonatomic) CGFloat startProgress;
+@property (assign, nonatomic) CGFloat endProgress;
+
 
 @end
 
@@ -37,7 +41,6 @@ static const CGFloat kDefalutSubTitleLabelFontSize = 16.0f;
 - (instancetype)initWithFrame:(CGRect)frame {
     self = [super initWithFrame:frame];
     if (self) {
-        [self addWhiteReplicatorLayer];
         [self setupViews];
     }
     return self;
@@ -63,46 +66,11 @@ static const CGFloat kDefalutSubTitleLabelFontSize = 16.0f;
 
 #pragma mark - Private
 
-- (void)addWhiteReplicatorLayer {
-    [self addReplicatorLayerWith:self.replicatorLayer
-                     circleCount:kDefaultCircleCount * 2
-                           alpha:0.6f
-                        duration:3.0f];
-}
-
-- (void)addReplicatorLayerWith:(CAReplicatorLayer *)replicatorLayer
-                   circleCount:(NSUInteger)circleCount
-                         alpha:(CGFloat)alpha
-                      duration:(CGFloat)duration {
-    
-    replicatorLayer = [CAReplicatorLayer layer];
-    replicatorLayer.frame = self.bounds;
-    replicatorLayer.backgroundColor = [UIColor clearColor].CGColor;
-    [self.layer addSublayer:replicatorLayer];
-    CALayer *circle = [CALayer layer];
-    circle.bounds = CGRectMake(0.0f, 0.0f, kDefaultCircleWidth, kDefaultCircleHeight);
-    circle.position = CGPointMake(CGRectGetWidth(self.frame) * 0.5f , 3);
-    circle.backgroundColor = [UIColor colorWithRed:248.0f / 255.0f green:181.0f / 255.0f blue:0.0f alpha:1.0f].CGColor;
-    [replicatorLayer addSublayer:circle];
-    replicatorLayer.instanceCount = circleCount;
-    CGFloat angle = (2 * M_PI) / (circleCount);
-    replicatorLayer.instanceTransform = CATransform3DMakeRotation(angle, 0, 0, 1);
-    
-}
-
 - (void)setupViews {
     self.animationInterval = 1.0f;
     self.backgroundColor = [UIColor clearColor];
-    [self setupBgColorView];
     [self setupBatteryLabel];
     [self setupSubTitleLabel];
-}
-
-- (void)setupBgColorView {
-    UIView *bgColorView = [[UIView alloc] initWithFrame:CGRectMake(15, 15, 120, 120)];
-    bgColorView.backgroundColor = [UIColor colorWithRed:248.0f / 255.0f green:181.0f / 255.0f blue:0.0f alpha:1.0f];
-    bgColorView.layer.cornerRadius = 60;
-    [self addSubview:bgColorView];
 }
 
 - (void)setupBatteryLabel {
@@ -123,7 +91,6 @@ static const CGFloat kDefalutSubTitleLabelFontSize = 16.0f;
     self.subTitleLabel.frame = CGRectMake(0, 65, 150, 50);
     self.subTitleLabel.text = @"检测进度";
     [self addSubview:self.subTitleLabel];
-    
 }
 
 - (void)startDisplayLink {
@@ -136,14 +103,18 @@ static const CGFloat kDefalutSubTitleLabelFontSize = 16.0f;
 
 - (void)updatePower {
     CGFloat percent =
-    (CACurrentMediaTime() - self.beginTime) / self.animationInterval / fabs(self.endValue - self.startValue);
+    (CACurrentMediaTime() - self.beginTime) / self.animationInterval / fabs(self.endProgress - self.startProgress);
     percent = percent > 1 ? 1.0f : percent;
     percent = percent < 0 ? 0.0f : percent;
-    self.currentValue = self.startValue + (self.endValue - self.startValue) * percent;
-    if (self.currentValue == self.endValue) {
-        self.startValue = self.endValue;
+    self.currentValue = self.startProgress + (self.endProgress - self.startProgress) * percent;
+    if (self.currentValue == self.endProgress) {
         [self stopDisplayLink];
     }
+    
+    if (self.animationBlock) {
+        self.animationBlock(self.currentValue);
+    }
+    
 }
 
 - (void)stopDisplayLink {
@@ -154,22 +125,24 @@ static const CGFloat kDefalutSubTitleLabelFontSize = 16.0f;
 
 #pragma mark - Public 
 
-- (void)setPercent:(CGFloat)percent
-          animated:(BOOL)animated {
-    self.endValue = percent;
-    if (animated) {
-        [self startDisplayLink];
-    } else {
-        self.currentValue = percent;
-        self.startValue = self.endValue;
-    }
+- (void)setProgressAnimationInterval:(NSInteger)animationInterval
+                                from:(CGFloat)startProgress
+                                  to:(CGFloat)endProgress {
+    self.endProgress = endProgress;
+    self.startProgress = startProgress;
+    self.animationInterval = animationInterval;
+    [self startDisplayLink];
 }
 
 #pragma mark - Lifecycle
 
 - (void)drawRect:(CGRect)rect {
-    
-    /****************方法2,画细线和线头的圆(少渐变色) ***/
+    [self drawBackground];
+    [self drawProgressLine:rect];
+}
+
+
+- (void)drawProgressLine:(CGRect)rect {
     CGFloat width = CGRectGetWidth(rect);
     CGFloat height = CGRectGetHeight(rect);
     CGFloat centerX = width * 0.5f;
@@ -182,12 +155,35 @@ static const CGFloat kDefalutSubTitleLabelFontSize = 16.0f;
     CGContextBeginPath(context);
     CGContextSetRGBStrokeColor(context, 248.0f / 255.0f, 181.0f / 255.0f, 0.0f, 1.0f);
     CGContextSetLineWidth(context, 6);
-    CGContextSetLineCap(context, kCGLineCapRound);
+    CGContextSetLineCap(context, kCGLineCapButt);
     CGMutablePathRef pathM = CGPathCreateMutable();
-    CGPathAddArc(pathM, NULL, centerX, centerY, radius, 3 * M_PI / 2, 3 * M_PI / 2 + 2 * M_PI * self.currentValue, NO);
+    CGPathAddArc(pathM, NULL, centerX, centerY, radius,  3 * M_PI / 2 + 2 * M_PI * self.startProgress , 3 * M_PI / 2 + 2 * M_PI * self.currentValue, NO);
     CGContextAddPath(context, pathM);
     CGContextStrokePath(context);
-    
+}
+
+- (void)drawBackground {
+    CGRect rect = self.bounds;
+    CGPoint center = CGPointMake(CGRectGetWidth(rect) / 2.f, CGRectGetHeight(rect) / 2.f);
+    CGFloat radius = MIN(CGRectGetHeight(rect), CGRectGetWidth(rect)) / 2 - Space - LineWidth;
+    UIBezierPath *path = [UIBezierPath bezierPathWithArcCenter:center radius:radius startAngle:0 endAngle:M_PI * 2 clockwise:YES];
+    [Yellow setFill];
+    [path fill];
+    [self drawCircleDashed];
+}
+
+- (void)drawCircleDashed {
+    CGRect rect = self.bounds;
+    CGPoint center = CGPointMake(CGRectGetWidth(rect) / 2.f, CGRectGetHeight(rect) / 2.f);
+    CGFloat radius = MIN(CGRectGetHeight(rect), CGRectGetWidth(rect)) / 2 - LineWidth / 2;
+    CGFloat endAngle = 2 * M_PI;
+    CGFloat startAngle = 0;
+    UIBezierPath *path = [UIBezierPath bezierPathWithArcCenter:center radius:radius startAngle:startAngle endAngle:endAngle clockwise:YES];
+    CGFloat lengths[] = { 2, 6};
+    [path setLineDash:lengths count:2 phase:0];
+    [path setLineWidth:LineWidth];
+    [Yellow setStroke];
+    [path stroke];
 }
 
 @end

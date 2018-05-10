@@ -18,4 +18,6 @@
 
 @property (weak, nonatomic) IBOutlet UILabel *spaceSizeLabel;
 
+@property (weak, nonatomic) IBOutlet UILabel *detectionHareDectionLabel;
+
 @end

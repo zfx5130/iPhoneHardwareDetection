@@ -7,10 +7,12 @@
 //
 
 #import "ViewController.h"
-
+#import "CircularProgressView.h"
 #import "HardwareDectetionViewController.h"
 
 @interface ViewController ()
+
+@property (weak, nonatomic) IBOutlet CircularProgressView *progressView;
 
 @end
 
@@ -20,6 +22,10 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
 }
 
 
