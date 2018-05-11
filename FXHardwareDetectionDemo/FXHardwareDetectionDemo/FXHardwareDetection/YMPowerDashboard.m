@@ -32,6 +32,9 @@ static const CGFloat kDefalutSubTitleLabelFontSize = 16.0f;
 @property (assign, nonatomic) CGFloat endProgress;
 @property (strong, nonatomic) CADisplayLink *displayLink;
 
+@property (assign, nonatomic) CGFloat currentProgress;
+
+
 @end
 
 @implementation YMPowerDashboard
@@ -94,14 +97,12 @@ static const CGFloat kDefalutSubTitleLabelFontSize = 16.0f;
 }
 
 - (void)updatePower {
-    CGFloat percent =
-    (CACurrentMediaTime() - self.beginTime) / self.animationInterval / fabs(self.endProgress - self.startProgress);
-
-    
+    CGFloat percent = self.currentProgress;
+    double y = 2 +  (arc4random() % 6);
+    self.currentProgress = self.currentProgress + y / 1000;
     percent = percent > 1 ? 1.0f : percent;
     percent = percent < 0 ? 0.0f : percent;
-    
-    
+
     self.currentValue = self.startProgress + (self.endProgress - self.startProgress) * percent;
     if (self.currentValue == self.endProgress) {
         [self stopDisplayLink];
@@ -109,8 +110,9 @@ static const CGFloat kDefalutSubTitleLabelFontSize = 16.0f;
     if (self.animationBlock) {
         self.animationBlock(self.currentValue);
     }
-    
 }
+
+
 
 - (void)startDisplayLink {
     [self stopDisplayLink];
@@ -125,6 +127,8 @@ static const CGFloat kDefalutSubTitleLabelFontSize = 16.0f;
     [self.displayLink invalidate];
     self.displayLink = nil;
 }
+
+
 
 - (void)pauseAnimation {
     [self stopDisplayLink];
@@ -144,6 +148,7 @@ static const CGFloat kDefalutSubTitleLabelFontSize = 16.0f;
                                   to:(CGFloat)endProgress {
     self.endProgress = endProgress;
     self.startProgress = startProgress;
+    self.currentProgress = startProgress;
     self.animationInterval = animationInterval;
     [self startDisplayLink];
 }
