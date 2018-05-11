@@ -101,7 +101,7 @@ UITableViewDataSource>
     self.circleAnimationView.animationBlock = ^(CGFloat value) {
         [weakSlef setupTableViewCellAminationWithCurrentValue:value];
     };
-    [self.circleAnimationView setProgressAnimationInterval:20
+    [self.circleAnimationView setProgressAnimationInterval:16
                                                       from:0.0
                                                         to:1.0];
 }
@@ -161,15 +161,15 @@ UITableViewDataSource>
     if (!_flag1) {
         _flag1 = YES;
         __block typeof(self) weakSelf = self;
-        self.circleAnimationView.displayLink.paused = YES;
-        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.75 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        [self.circleAnimationView pauseAnimation];
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.55 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
             NSMutableDictionary *touchDic = self.allDectionArrays[0];
             touchDic[@"content"] = @"未检测";
             touchDic[@"colorType"] = @"2";
             touchDic[@"imageType"] = @"1";
             NSIndexPath *indexPath = [NSIndexPath indexPathForRow:0 inSection:0];
             [weakSelf.tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationLeft];
-            weakSelf.circleAnimationView.displayLink.paused = NO;
+            [weakSelf.circleAnimationView canclePauseAnimation];
         });
     }
 }
@@ -178,7 +178,7 @@ UITableViewDataSource>
     if (!_flag2) {
         _flag2 = YES;
         __block typeof(self) weakSelf = self;
-        self.circleAnimationView.displayLink.paused = YES;
+        [self.circleAnimationView pauseAnimation];
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.6 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
             NSMutableDictionary *touchDic = self.allDectionArrays[1];
             touchDic[@"content"] = @"正常";
@@ -186,7 +186,7 @@ UITableViewDataSource>
             touchDic[@"imageType"] = @"2";
             NSIndexPath *indexPath = [NSIndexPath indexPathForRow:1 inSection:0];
             [weakSelf.tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationLeft];
-            weakSelf.circleAnimationView.displayLink.paused = NO;
+            [weakSelf.circleAnimationView canclePauseAnimation];
         });
     }
 }
@@ -195,7 +195,7 @@ UITableViewDataSource>
     if (!_flag3) {
         _flag3 = YES;
         __block typeof(self) weakSelf = self;
-        self.circleAnimationView.displayLink.paused = YES;
+        [self.circleAnimationView pauseAnimation];
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.95 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
             NSMutableDictionary *touchDic = self.allDectionArrays[2];
             touchDic[@"content"] = @"正常";
@@ -203,7 +203,7 @@ UITableViewDataSource>
             touchDic[@"imageType"] = @"2";
             NSIndexPath *indexPath = [NSIndexPath indexPathForRow:2 inSection:0];
             [weakSelf.tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationLeft];
-            weakSelf.circleAnimationView.displayLink.paused = NO;
+            [weakSelf.circleAnimationView canclePauseAnimation];
         });
     }
 }
@@ -212,7 +212,7 @@ UITableViewDataSource>
     if (!_flag4) {
         _flag4 = YES;
         __block typeof(self) weakSelf = self;
-        self.circleAnimationView.displayLink.paused = YES;
+        [self.circleAnimationView pauseAnimation];
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.65 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
             NSMutableDictionary *touchDic = self.allDectionArrays[3];
             touchDic[@"content"] = @"正常";
@@ -220,7 +220,7 @@ UITableViewDataSource>
             touchDic[@"imageType"] = @"2";
             NSIndexPath *indexPath = [NSIndexPath indexPathForRow:3 inSection:0];
             [weakSelf.tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationLeft];
-            weakSelf.circleAnimationView.displayLink.paused = NO;
+            [weakSelf.circleAnimationView canclePauseAnimation];
         });
     }
 }
@@ -229,7 +229,7 @@ UITableViewDataSource>
     if (!_flag5) {
         _flag5 = YES;
         __block typeof(self) weakSelf = self;
-        self.circleAnimationView.displayLink.paused = YES;
+        [self.circleAnimationView pauseAnimation];
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.45 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
             NSMutableDictionary *touchDic = self.allDectionArrays[4];
             touchDic[@"content"] = @"正常";
@@ -237,7 +237,7 @@ UITableViewDataSource>
             touchDic[@"imageType"] = @"2";
             NSIndexPath *indexPath = [NSIndexPath indexPathForRow:4 inSection:0];
             [weakSelf.tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationLeft];
-            weakSelf.circleAnimationView.displayLink.paused = NO;
+            [weakSelf.circleAnimationView canclePauseAnimation];
         });
     }
 }
@@ -246,7 +246,7 @@ UITableViewDataSource>
     if (!_flag6) {
         _flag6 = YES;
         __block typeof(self) weakSelf = self;
-        self.circleAnimationView.displayLink.paused = YES;
+        [self.circleAnimationView pauseAnimation];
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
             NSMutableDictionary *touchDic = self.allDectionArrays[5];
             touchDic[@"content"] = @"正常";
@@ -254,7 +254,7 @@ UITableViewDataSource>
             touchDic[@"imageType"] = @"2";
             NSIndexPath *indexPath = [NSIndexPath indexPathForRow:5 inSection:0];
             [weakSelf.tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationLeft];
-            weakSelf.circleAnimationView.displayLink.paused = NO;
+            [weakSelf.circleAnimationView canclePauseAnimation];
         });
     }
 }
@@ -263,15 +263,15 @@ UITableViewDataSource>
     if (!_flag7) {
         _flag7 = YES;
         __block typeof(self) weakSelf = self;
-        self.circleAnimationView.displayLink.paused = YES;
-        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.35 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        [self.circleAnimationView pauseAnimation];
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.85 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
             NSMutableDictionary *touchDic = self.allDectionArrays[6];
             touchDic[@"content"] = @"正常";
             touchDic[@"colorType"] = @"2";
             touchDic[@"imageType"] = @"3";
             NSIndexPath *indexPath = [NSIndexPath indexPathForRow:6 inSection:0];
             [weakSelf.tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationLeft];
-            weakSelf.circleAnimationView.displayLink.paused = NO;
+            [weakSelf.circleAnimationView canclePauseAnimation];
         });
     }
 }
@@ -280,15 +280,15 @@ UITableViewDataSource>
     if (!_flag8) {
         _flag8 = YES;
         __block typeof(self) weakSelf = self;
-        self.circleAnimationView.displayLink.paused = YES;
-        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.25 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        [self.circleAnimationView pauseAnimation];
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.95 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
             NSMutableDictionary *touchDic = self.allDectionArrays[7];
             touchDic[@"content"] = @"正常";
             touchDic[@"colorType"] = @"2";
             touchDic[@"imageType"] = @"3";
             NSIndexPath *indexPath = [NSIndexPath indexPathForRow:7 inSection:0];
             [weakSelf.tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationLeft];
-            weakSelf.circleAnimationView.displayLink.paused = NO;
+            [weakSelf.circleAnimationView canclePauseAnimation];
         });
     }
 }

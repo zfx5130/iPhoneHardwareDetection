@@ -30,7 +30,7 @@ static const CGFloat kDefalutSubTitleLabelFontSize = 16.0f;
 @property (assign, nonatomic) BOOL isFirstDraw;
 @property (assign, nonatomic) CGFloat startProgress;
 @property (assign, nonatomic) CGFloat endProgress;
-
+@property (strong, nonatomic) CADisplayLink *displayLink;
 
 @end
 
@@ -93,6 +93,25 @@ static const CGFloat kDefalutSubTitleLabelFontSize = 16.0f;
     [self addSubview:self.subTitleLabel];
 }
 
+- (void)updatePower {
+    CGFloat percent =
+    (CACurrentMediaTime() - self.beginTime) / self.animationInterval / fabs(self.endProgress - self.startProgress);
+
+    
+    percent = percent > 1 ? 1.0f : percent;
+    percent = percent < 0 ? 0.0f : percent;
+    
+    
+    self.currentValue = self.startProgress + (self.endProgress - self.startProgress) * percent;
+    if (self.currentValue == self.endProgress) {
+        [self stopDisplayLink];
+    }
+    if (self.animationBlock) {
+        self.animationBlock(self.currentValue);
+    }
+    
+}
+
 - (void)startDisplayLink {
     [self stopDisplayLink];
     [self.displayLink addToRunLoop:[NSRunLoop currentRunLoop]
@@ -101,26 +120,21 @@ static const CGFloat kDefalutSubTitleLabelFontSize = 16.0f;
     self.beginTime = CACurrentMediaTime();
 }
 
-- (void)updatePower {
-    CGFloat percent =
-    (CACurrentMediaTime() - self.beginTime) / self.animationInterval / fabs(self.endProgress - self.startProgress);
-    percent = percent > 1 ? 1.0f : percent;
-    percent = percent < 0 ? 0.0f : percent;
-    self.currentValue = self.startProgress + (self.endProgress - self.startProgress) * percent;
-    if (self.currentValue == self.endProgress) {
-        [self stopDisplayLink];
-    }
-    
-    if (self.animationBlock) {
-        self.animationBlock(self.currentValue);
-    }
-    
-}
-
 - (void)stopDisplayLink {
     self.displayLink.paused = YES;
     [self.displayLink invalidate];
     self.displayLink = nil;
+}
+
+- (void)pauseAnimation {
+    [self stopDisplayLink];
+}
+
+- (void)canclePauseAnimation {
+    [self stopDisplayLink];
+    [self.displayLink addToRunLoop:[NSRunLoop currentRunLoop]
+                           forMode:NSRunLoopCommonModes];
+    self.displayLink.paused = NO;
 }
 
 #pragma mark - Public 
@@ -141,8 +155,8 @@ static const CGFloat kDefalutSubTitleLabelFontSize = 16.0f;
     [self drawProgressLine:rect];
 }
 
-
 - (void)drawProgressLine:(CGRect)rect {
+    
     CGFloat width = CGRectGetWidth(rect);
     CGFloat height = CGRectGetHeight(rect);
     CGFloat centerX = width * 0.5f;
@@ -150,8 +164,8 @@ static const CGFloat kDefalutSubTitleLabelFontSize = 16.0f;
     CGFloat lineWidth = 5.0f;
     CGFloat radius = width * 0.5f - lineWidth * 0.5f - 0.5;
     
-    CGContextRef context = UIGraphicsGetCurrentContext();
     //粗线
+    CGContextRef context = UIGraphicsGetCurrentContext();
     CGContextBeginPath(context);
     CGContextSetRGBStrokeColor(context, 248.0f / 255.0f, 181.0f / 255.0f, 0.0f, 1.0f);
     CGContextSetLineWidth(context, 6);
@@ -179,7 +193,7 @@ static const CGFloat kDefalutSubTitleLabelFontSize = 16.0f;
     CGFloat endAngle = 2 * M_PI;
     CGFloat startAngle = 0;
     UIBezierPath *path = [UIBezierPath bezierPathWithArcCenter:center radius:radius startAngle:startAngle endAngle:endAngle clockwise:YES];
-    CGFloat lengths[] = { 2, 6};
+    CGFloat lengths[] = { 2, 6 };
     [path setLineDash:lengths count:2 phase:0];
     [path setLineWidth:LineWidth];
     [Yellow setStroke];
