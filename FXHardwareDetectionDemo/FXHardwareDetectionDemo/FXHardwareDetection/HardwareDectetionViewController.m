@@ -127,7 +127,6 @@ UITableViewDataSource>
 }
 
 - (void)setupTableViewCellAminationWithCurrentValue:(CGFloat)value {
-    //NSLog(@"value:----::::%@",@(value));
     if (value <= 0.15) {
     } else if (value <= 0.23) {
         //指纹识别

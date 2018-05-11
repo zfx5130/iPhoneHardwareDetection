@@ -189,13 +189,13 @@
 		842D100920A1AF8100F55B20 /* Tools */ = {
 			isa = PBXGroup;
 			children = (
-				842D100A20A1AF8100F55B20 /* NetWorkInfoManager.h */,
 				842D100B20A1AF8100F55B20 /* DeviceInfoManager.h */,
-				842D100C20A1AF8100F55B20 /* DeviceDataLibrery.h */,
-				842D100D20A1AF8100F55B20 /* BatteryInfoManager.h */,
 				842D100E20A1AF8100F55B20 /* DeviceInfoManager.m */,
-				842D100F20A1AF8100F55B20 /* NetWorkInfoManager.m */,
+				842D100C20A1AF8100F55B20 /* DeviceDataLibrery.h */,
 				842D101020A1AF8100F55B20 /* DeviceDataLibrery.m */,
+				842D100A20A1AF8100F55B20 /* NetWorkInfoManager.h */,
+				842D100F20A1AF8100F55B20 /* NetWorkInfoManager.m */,
+				842D100D20A1AF8100F55B20 /* BatteryInfoManager.h */,
 				842D101120A1AF8100F55B20 /* BatteryInfoManager.m */,
 			);
 			path = Tools;
