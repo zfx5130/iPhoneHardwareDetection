@@ -22,10 +22,10 @@
 		842D100320A1A69300F55B20 /* HardwareDectionTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 842D100120A1A69300F55B20 /* HardwareDectionTableViewCell.xib */; };
 		842D100620A1A8A600F55B20 /* HardwareDectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 842D100520A1A8A600F55B20 /* HardwareDectionView.m */; };
 		842D100820A1A8BA00F55B20 /* HardwareDectionView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 842D100720A1A8BA00F55B20 /* HardwareDectionView.xib */; };
-		842D101220A1AF8100F55B20 /* DeviceInfoManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 842D100E20A1AF8100F55B20 /* DeviceInfoManager.m */; };
-		842D101320A1AF8100F55B20 /* NetWorkInfoManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 842D100F20A1AF8100F55B20 /* NetWorkInfoManager.m */; };
-		842D101420A1AF8100F55B20 /* DeviceDataLibrery.m in Sources */ = {isa = PBXBuildFile; fileRef = 842D101020A1AF8100F55B20 /* DeviceDataLibrery.m */; };
-		842D101520A1AF8100F55B20 /* BatteryInfoManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 842D101120A1AF8100F55B20 /* BatteryInfoManager.m */; };
+		8430A4E820A583B1004998F0 /* DeviceInfoManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 8430A4E420A583B1004998F0 /* DeviceInfoManager.m */; };
+		8430A4E920A583B1004998F0 /* NetWorkInfoManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 8430A4E520A583B1004998F0 /* NetWorkInfoManager.m */; };
+		8430A4EA20A583B1004998F0 /* DeviceDataLibrery.m in Sources */ = {isa = PBXBuildFile; fileRef = 8430A4E620A583B1004998F0 /* DeviceDataLibrery.m */; };
+		8430A4EB20A583B1004998F0 /* BatteryInfoManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 8430A4E720A583B1004998F0 /* BatteryInfoManager.m */; };
 		84B856C420A410B300377A50 /* CircularProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = 84B856C120A410B300377A50 /* CircularProgressView.m */; };
 /* End PBXBuildFile section */
 
@@ -74,14 +74,14 @@
 		842D100420A1A8A600F55B20 /* HardwareDectionView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HardwareDectionView.h; sourceTree = "<group>"; };
 		842D100520A1A8A600F55B20 /* HardwareDectionView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HardwareDectionView.m; sourceTree = "<group>"; };
 		842D100720A1A8BA00F55B20 /* HardwareDectionView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HardwareDectionView.xib; sourceTree = "<group>"; };
-		842D100A20A1AF8100F55B20 /* NetWorkInfoManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetWorkInfoManager.h; sourceTree = "<group>"; };
-		842D100B20A1AF8100F55B20 /* DeviceInfoManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DeviceInfoManager.h; sourceTree = "<group>"; };
-		842D100C20A1AF8100F55B20 /* DeviceDataLibrery.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DeviceDataLibrery.h; sourceTree = "<group>"; };
-		842D100D20A1AF8100F55B20 /* BatteryInfoManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BatteryInfoManager.h; sourceTree = "<group>"; };
-		842D100E20A1AF8100F55B20 /* DeviceInfoManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DeviceInfoManager.m; sourceTree = "<group>"; };
-		842D100F20A1AF8100F55B20 /* NetWorkInfoManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetWorkInfoManager.m; sourceTree = "<group>"; };
-		842D101020A1AF8100F55B20 /* DeviceDataLibrery.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DeviceDataLibrery.m; sourceTree = "<group>"; };
-		842D101120A1AF8100F55B20 /* BatteryInfoManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BatteryInfoManager.m; sourceTree = "<group>"; };
+		8430A4E020A583B1004998F0 /* NetWorkInfoManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetWorkInfoManager.h; sourceTree = "<group>"; };
+		8430A4E120A583B1004998F0 /* DeviceInfoManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DeviceInfoManager.h; sourceTree = "<group>"; };
+		8430A4E220A583B1004998F0 /* DeviceDataLibrery.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DeviceDataLibrery.h; sourceTree = "<group>"; };
+		8430A4E320A583B1004998F0 /* BatteryInfoManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BatteryInfoManager.h; sourceTree = "<group>"; };
+		8430A4E420A583B1004998F0 /* DeviceInfoManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DeviceInfoManager.m; sourceTree = "<group>"; };
+		8430A4E520A583B1004998F0 /* NetWorkInfoManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetWorkInfoManager.m; sourceTree = "<group>"; };
+		8430A4E620A583B1004998F0 /* DeviceDataLibrery.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DeviceDataLibrery.m; sourceTree = "<group>"; };
+		8430A4E720A583B1004998F0 /* BatteryInfoManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BatteryInfoManager.m; sourceTree = "<group>"; };
 		84B856C120A410B300377A50 /* CircularProgressView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CircularProgressView.m; sourceTree = "<group>"; };
 		84B856C320A410B300377A50 /* CircularProgressView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CircularProgressView.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -170,7 +170,7 @@
 		842D0FF620A16E4B00F55B20 /* FXHardwareDetection */ = {
 			isa = PBXGroup;
 			children = (
-				842D100920A1AF8100F55B20 /* Tools */,
+				8430A4DF20A583B1004998F0 /* DeviceManagerTool */,
 				842D0FFC20A1A11D00F55B20 /* YMPowerDashboard.h */,
 				842D0FFD20A1A11E00F55B20 /* YMPowerDashboard.m */,
 				842D100420A1A8A600F55B20 /* HardwareDectionView.h */,
@@ -186,19 +186,19 @@
 			path = FXHardwareDetection;
 			sourceTree = "<group>";
 		};
-		842D100920A1AF8100F55B20 /* Tools */ = {
+		8430A4DF20A583B1004998F0 /* DeviceManagerTool */ = {
 			isa = PBXGroup;
 			children = (
-				842D100B20A1AF8100F55B20 /* DeviceInfoManager.h */,
-				842D100E20A1AF8100F55B20 /* DeviceInfoManager.m */,
-				842D100C20A1AF8100F55B20 /* DeviceDataLibrery.h */,
-				842D101020A1AF8100F55B20 /* DeviceDataLibrery.m */,
-				842D100A20A1AF8100F55B20 /* NetWorkInfoManager.h */,
-				842D100F20A1AF8100F55B20 /* NetWorkInfoManager.m */,
-				842D100D20A1AF8100F55B20 /* BatteryInfoManager.h */,
-				842D101120A1AF8100F55B20 /* BatteryInfoManager.m */,
+				8430A4E020A583B1004998F0 /* NetWorkInfoManager.h */,
+				8430A4E120A583B1004998F0 /* DeviceInfoManager.h */,
+				8430A4E220A583B1004998F0 /* DeviceDataLibrery.h */,
+				8430A4E320A583B1004998F0 /* BatteryInfoManager.h */,
+				8430A4E420A583B1004998F0 /* DeviceInfoManager.m */,
+				8430A4E520A583B1004998F0 /* NetWorkInfoManager.m */,
+				8430A4E620A583B1004998F0 /* DeviceDataLibrery.m */,
+				8430A4E720A583B1004998F0 /* BatteryInfoManager.m */,
 			);
-			path = Tools;
+			path = DeviceManagerTool;
 			sourceTree = "<group>";
 		};
 		84B856C020A410B300377A50 /* CircularProgressView */ = {
@@ -345,14 +345,14 @@
 			files = (
 				842D100220A1A69300F55B20 /* HardwareDectionTableViewCell.m in Sources */,
 				842D0FFE20A1A11E00F55B20 /* YMPowerDashboard.m in Sources */,
+				8430A4E920A583B1004998F0 /* NetWorkInfoManager.m in Sources */,
 				842D0FFA20A16E7A00F55B20 /* HardwareDectetionViewController.m in Sources */,
 				842D0FC920A16C7F00F55B20 /* ViewController.m in Sources */,
+				8430A4EB20A583B1004998F0 /* BatteryInfoManager.m in Sources */,
 				842D0FD420A16C8000F55B20 /* main.m in Sources */,
-				842D101220A1AF8100F55B20 /* DeviceInfoManager.m in Sources */,
-				842D101520A1AF8100F55B20 /* BatteryInfoManager.m in Sources */,
-				842D101320A1AF8100F55B20 /* NetWorkInfoManager.m in Sources */,
-				842D101420A1AF8100F55B20 /* DeviceDataLibrery.m in Sources */,
+				8430A4EA20A583B1004998F0 /* DeviceDataLibrery.m in Sources */,
 				842D0FC620A16C7F00F55B20 /* AppDelegate.m in Sources */,
+				8430A4E820A583B1004998F0 /* DeviceInfoManager.m in Sources */,
 				84B856C420A410B300377A50 /* CircularProgressView.m in Sources */,
 				842D100620A1A8A600F55B20 /* HardwareDectionView.m in Sources */,
 			);

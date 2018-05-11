@@ -13,7 +13,12 @@
 #import "HardwareDectionTableViewCell.h"
 #import "HardwareDectetionViewController.h"
 
-#define kUIColorFromRGBA(r,g,b,a)     [UIColor colorWithRed:r / 255.0f green:g / 255.0f blue:b / 255.0f alpha:a]
+#import <AVFoundation/AVFoundation.h>
+
+#define kUIColorFromRGBA(r,g,b,a)  [UIColor colorWithRed:r / 255.0f green:g / 255.0f blue:b / 255.0f alpha:a]
+#define kShow_Alert(_msg_)  UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"提示" message:_msg_ preferredStyle:UIAlertControllerStyleAlert];\
+[alertController addAction:[UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleCancel handler:nil]];\
+[[[UIApplication sharedApplication].windows firstObject].rootViewController presentViewController:alertController animated:YES completion:nil];
 
 @interface HardwareDectetionViewController ()
 <UITableViewDelegate,
@@ -101,9 +106,22 @@ UITableViewDataSource>
     self.circleAnimationView.animationBlock = ^(CGFloat value) {
         [weakSlef setupTableViewCellAminationWithCurrentValue:value];
     };
+    
+    //相机检测
+    [self cameraLimitAlert];
+    
+    
     [self.circleAnimationView setProgressAnimationInterval:16
                                                       from:0.0
                                                         to:1.0];
+}
+
+- (void)cameraLimitAlert {
+    AVAuthorizationStatus authStatus = [AVCaptureDevice authorizationStatusForMediaType:AVMediaTypeVideo];
+    if (authStatus == AVAuthorizationStatusRestricted || authStatus == AVAuthorizationStatusDenied) {
+        kShow_Alert(@"照相机不可用!");
+        return;
+    }
 }
 
 - (NSString *)getMemorySize {
@@ -127,7 +145,7 @@ UITableViewDataSource>
 }
 
 - (void)setupTableViewCellAminationWithCurrentValue:(CGFloat)value {
-    if (value <= 0.15) {
+    if (value <= 0.1) {
     } else if (value <= 0.23) {
         //指纹识别
         [self setupTouchIdAnimation];
